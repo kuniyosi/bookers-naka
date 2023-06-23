@@ -1,0 +1,10 @@
+<!--変数をobjにすることでbookエラーにもuserエラーにも共通して分かりやすいようにする-->
+<% if obj.errors.any? %>
+        <h3><%= pluralize(obj.errors.count, "error") %> prohibited this obj from being saved:</h3>
+        <!--pluralize(book.errors.count, "error"でエラーの数に応じて複数形で表示したりしてくれる-->
+        <ul>
+          <% obj.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>

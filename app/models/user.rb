@@ -9,6 +9,11 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  # ２文字以上２０字以内で制限、uniquenessでnemeに一意性を持たせる。
+  validates :introduction, length:{ maximum: 50 }
+  # 空の投稿は許可するのでpresence: trueは書かない
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/No_image.jpg')
