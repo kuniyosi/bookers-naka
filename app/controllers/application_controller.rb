@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, except: [:top, :about]
+  # ログインが完了していない場合、トップページとアバウトページ以外は入れないようにする。exceptは指定したもの以外は〜する
   before_action :configure_permitted_parameters, if: :devise_controller?
   # 上記記述はdeviseの機能（ユーザー登録やログイン認証など）が利用される前にconfigure_permitted_parametersメソッドが実行される
 

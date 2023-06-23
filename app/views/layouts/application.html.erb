@@ -74,6 +74,8 @@
       </nav>
     <!--下記はdeviseのヘルパーメソッド。userがログインしていればtrue、ログアウト中であればfalseが返される-->
     </header>
+    <!--フラッシュメッセージは全ページに対応させるためにapplication.html.erbに書くのが良い。-->
+    <p id="notice"><%= notice %></p>
     <%= yield %>
     <footer>
       <div class = "container mt-5">
