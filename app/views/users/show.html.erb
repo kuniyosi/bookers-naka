@@ -2,11 +2,7 @@
   <div class = "row">
     <div class = "col-md-3">
       <%= render 'users/user_info', user: @user %>
-      <div class = "row">
-        <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      </div>
+
       <%= render 'books/book_new', book_new: @book_new %>
     </div>
     <!--offsetはカラムに空白を作る時に使用-->
