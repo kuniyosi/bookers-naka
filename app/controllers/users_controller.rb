@@ -8,15 +8,15 @@ class UsersController < ApplicationController
     unless user.id == current_user.id
       redirect_to user_path(current_user)
     end
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if  @user.update(user_params)
-        redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
-        render :edit
+      render :edit
     end
   end
 
@@ -33,9 +33,8 @@ class UsersController < ApplicationController
   end
 
 private
-
   def user_params
-     params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
   # ログインしているユーザーのidとページのparams[:id]が一致しなかった場合、一覧画面に遷移する
@@ -49,8 +48,7 @@ private
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
-
 end
