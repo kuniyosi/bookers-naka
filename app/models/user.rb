@@ -21,4 +21,20 @@ class User < ApplicationRecord
     end
      profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    # （）内の条件のデータの検索と作成を自動的に行うrailsのメソッド。データが存在すればそのデータを返し、なければ新規作成する
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      # ランダムな文字列を生成するRubyのメソッド
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+
+  # guest_user?メソッドを作成したことでguest_userが関わるcontrollerやviewへの記述で使い回すことができ、変更も容易に行えるようになる。
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
 end
