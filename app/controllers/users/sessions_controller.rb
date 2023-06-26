@@ -1,5 +1,4 @@
 class Users::SessionsController < Devise::SessionsController
-  
   # ゲストログイン機能の実装
   def guest_sign_in
     user = User.guest
